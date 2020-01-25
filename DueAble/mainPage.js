@@ -21,7 +21,7 @@ export default class ExampleFour extends Component {
  
   render() {
     const state = this.state;
-    const element = (data, index) => (
+    const Edit = (data, index) => (
       <TouchableOpacity onPress={() => this._alertIndex(index)}>
         <View style={styles.btn}>
           <Text style={styles.btnText}>Edit</Text>
@@ -29,6 +29,14 @@ export default class ExampleFour extends Component {
       </TouchableOpacity>
     );
  
+    const Delete = (data, index) => (
+      <TouchableOpacity onPress={() => this._alertIndex(index)}>
+        <View style={styles.btn}>
+          <Text style={styles.btnText}>Delete</Text>
+        </View>
+      </TouchableOpacity>
+    );
+
     return (
       <View style={styles.container}>
         <Table borderStyle={{borderColor: 'transparent'}}>
@@ -39,7 +47,9 @@ export default class ExampleFour extends Component {
                 {
                   rowData.map((cellData, cellIndex) => (
                     <Cell key={cellIndex} data={
-                      cellIndex === (4 || 5) ? element(cellData, index) : cellData
+                      cellIndex === 4 ? Edit(cellData, index)
+                      : cellIndex === 5 ? Delete(cellData, index)
+                      : cellData
                     } textStyle={styles.text}/>
                   ))
                 }
